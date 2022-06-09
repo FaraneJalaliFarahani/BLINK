@@ -14,7 +14,7 @@ import io
 import random
 import time
 import numpy as np
-
+import transformers
 from multiprocessing.pool import ThreadPool
 
 from tqdm import tqdm, trange
