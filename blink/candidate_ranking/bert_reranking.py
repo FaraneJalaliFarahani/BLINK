@@ -13,14 +13,14 @@ from transformers import (
     BertConfig,
     AutoModel,
 )
-from pytorch_transformers.tokenization_bert import AutoTokenizer
+from transformers import AutoTokenizer
 from torch.utils.data import DataLoader, SequentialSampler, TensorDataset
 from torch import nn
 from torch.nn import CrossEntropyLoss, MSELoss
 from tqdm import tqdm
 
-from pytorch_transformers.optimization import AdamW, WarmupLinearSchedule
-from pytorch_transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
+from transformers.optimization import AdamW, get_linear_schedule_with_warmup
+from transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
 
 
 class BertForReranking(BertPreTrainedModel):
@@ -268,7 +268,7 @@ class BertReranker:
             correct_bias=False,
         )
 
-        scheduler = WarmupLinearSchedule(
+        scheduler = get_linear_schedule_with_warmup(
             optimizer,
             warmup_steps=num_warmup_steps,
             t_total=num_train_optimization_steps,
@@ -294,7 +294,7 @@ class BertReranker:
 
     @staticmethod
     def get_tokenizer(parameters):
-        tokenizer = BertTokenizer.from_pretrained(
+        tokenizer = AutoTokenizer.from_pretrained(
             parameters["path_to_model"], do_lower_case=parameters["lowercase_flag"]
         )
         return tokenizer
