@@ -23,7 +23,7 @@ from collections import OrderedDict
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, TensorDataset
 
 from transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
-from transformers.optimization import WarmupLinearSchedule
+from transformers.optimization import get_linear_schedule_with_warmup
 from transformers.tokenization_bert import BertTokenizer
 from transformers.modeling_utils import WEIGHTS_NAME
 
@@ -98,7 +98,7 @@ def get_scheduler(params, optimizer, len_train_data, logger):
     num_train_steps = int(len_train_data / batch_size / grad_acc) * epochs
     num_warmup_steps = int(num_train_steps * params["warmup_proportion"])
 
-    scheduler = WarmupLinearSchedule(
+    scheduler = get_linear_schedule_with_warmup(
         optimizer, warmup_steps=num_warmup_steps, t_total=num_train_steps,
     )
     logger.info(" Num optimization steps = %d" % num_train_steps)
