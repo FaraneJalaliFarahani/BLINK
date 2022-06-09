@@ -11,7 +11,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from tqdm import tqdm
 
-from transformers.modeling_bert import (
+from transformers import (
     BertPreTrainedModel,
     BertConfig,
     AutoModel,
