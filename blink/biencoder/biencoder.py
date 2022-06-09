@@ -17,7 +17,7 @@ from transformers.modeling_bert import (
     AutoModel,
 )
 
-from transformers.tokenization_bert import AutoTokenizer
+from transformers import AutoTokenizer
 
 from blink.common.ranker_base import BertEncoder, get_model_obj
 from blink.common.optimizer import get_bert_optimizer
