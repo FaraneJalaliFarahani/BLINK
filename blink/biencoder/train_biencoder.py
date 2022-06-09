@@ -24,7 +24,7 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, Tenso
 
 from transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
 from transformers.optimization import get_linear_schedule_with_warmup
-from transformers.tokenization_bert import BertTokenizer
+from transformers.tokenization_bert import AutoTokenizer
 from transformers.modeling_utils import WEIGHTS_NAME
 
 from blink.biencoder.biencoder import BiEncoderRanker, load_biencoder
