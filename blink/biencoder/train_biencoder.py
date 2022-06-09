@@ -22,10 +22,10 @@ from collections import OrderedDict
 
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, TensorDataset
 
-from pytorch_transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
-from pytorch_transformers.optimization import WarmupLinearSchedule
-from pytorch_transformers.tokenization_bert import BertTokenizer
-from pytorch_transformers.modeling_utils import WEIGHTS_NAME
+from transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
+from transformers.optimization import WarmupLinearSchedule
+from transformers.tokenization_bert import BertTokenizer
+from transformers.modeling_utils import WEIGHTS_NAME
 
 from blink.biencoder.biencoder import BiEncoderRanker, load_biencoder
 import logging
