@@ -59,7 +59,7 @@ def evaluate(
 
     for step, batch in enumerate(iter_):
         batch = tuple(t.to(device) for t in batch)
-        context_input, candidate_input, _, _ = batch
+        context_input, candidate_input, _ = batch
         with torch.no_grad():
             eval_loss, logits = reranker(context_input, candidate_input)
 
@@ -99,7 +99,7 @@ def get_scheduler(params, optimizer, len_train_data, logger):
     num_warmup_steps = int(num_train_steps * params["warmup_proportion"])
 
     scheduler = get_linear_schedule_with_warmup(
-        optimizer, warmup_steps=num_warmup_steps, t_total=num_train_steps,
+        optimizer, num_warmup_steps=num_warmup_steps, num_training_steps=num_train_steps,
     )
     logger.info(" Num optimization steps = %d" % num_train_steps)
     logger.info(" Num warmup steps = %d", num_warmup_steps)
@@ -225,7 +225,7 @@ def main(params):
 
         for step, batch in enumerate(iter_):
             batch = tuple(t.to(device) for t in batch)
-            context_input, candidate_input, _, _ = batch
+            context_input, candidate_input, _ = batch
             loss, _ = reranker(context_input, candidate_input)
 
             # if n_gpu > 1:
